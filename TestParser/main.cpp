@@ -6,6 +6,9 @@
 #include <cctype>
 #include <cmath>
 
+//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser\" ; if ($?) { g++ main.cpp -o main } ; if ($?) { .\main }
+
+
 double to_number(const std::string& s)
 {
   std::istringstream ist{s};
@@ -485,15 +488,15 @@ double Parser::get_argument()
 int main()
 {
   Parser parser;
-
   std::cout.precision(12);
 
   while (std::cin) {
     std::string s;
+    std::cout << "Write some math: ";
     std::getline(std::cin, s);
     if (!std::cin || s == "quit") break;
     try {
-      std::cout << parser(s) << '\n';
+      std::cout << "Answer: " << parser(s) << '\n';
     } catch(const Lexical_error& e) {
       std::cerr << "Lexical error: " << e << '\n';
     } catch(const Syntax_error& e) {
@@ -501,5 +504,7 @@ int main()
     } catch(const Runtime_error& e) {
       std::cerr << "Runtime error: " << e << '\n';
     }
+    
+    std::cout << "\n";
   }
 }
