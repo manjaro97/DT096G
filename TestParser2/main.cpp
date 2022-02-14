@@ -6,7 +6,7 @@
 #include <cctype>
 #include <cmath>
 
-//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser\" ; if ($?) { g++ main.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser2\" ; if ($?) { g++ main.cpp -o main } ; if ($?) { .\main }
 
 
 double to_number(const std::string& s)
