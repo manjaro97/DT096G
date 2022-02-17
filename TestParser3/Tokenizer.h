@@ -9,34 +9,23 @@ namespace simpleparser{
     enum TokenType {
         WHITESPACE, 
         IDENTIFIER, 
-        INTERER_LITERAL,
-        DOUBLE_LITERAL,
-        STRING_LITERAL,
+        INTEGER_LITERAL,
         OPERATOR,
-        STRING_ESCAPE_SEQUENCE, 
-        POTENTIAL_DOUBLE,
-        POTENTIAL_COMMENT,
-        COMMENT
+        POTENTIAL_OPERATOR
     };
 
     static const char* sTokenTypeStrings[] = {
         "WHITESPACE", 
         "IDENTIFIER", 
-        "INTERER_LITERAL",
-        "DOUBLE_LITERAL",
-        "STRING_LITERAL",
+        "INTEGER_LITERAL",
         "OPERATOR",
-        "STRING_ESCAPE_SEQUENCE", 
-        "POTENTIAL_DOUBLE",
-        "POTENTIAL_COMMENT",
-        "COMMENT"
+        "POTENTIAL_OPERATOR"
     };
 
     class Token{
     public: 
         enum TokenType mType{WHITESPACE};
         std::string mText;
-        size_t mLineNumber{0};
 
         void debugPrint() const;
 
