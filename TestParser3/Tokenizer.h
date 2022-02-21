@@ -8,12 +8,7 @@ namespace simpleparser{
 
     enum TokenType {
         WHITESPACE, 
-        IDENTIFIER, 
-        INTEGER_LITERAL,
-        OPERATOR,
         POTENTIAL_OPERATOR,
-        OP,
-
         CHARACTER,
         OR_SYMBOL,
         REPETITION_SYMBOL,
@@ -32,12 +27,7 @@ namespace simpleparser{
 
     static const char* sTokenTypeStrings[] = {
         "WHITESPACE", 
-        "IDENTIFIER", 
-        "INTEGER_LITERAL",
-        "OPERATOR",
         "POTENTIAL_OPERATOR", 
-        "OP",
-
         "CHARACTER",
         "OR_SYMBOL",
         "REPETITION_SYMBOL",
