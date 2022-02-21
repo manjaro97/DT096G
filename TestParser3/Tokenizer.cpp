@@ -13,8 +13,12 @@ namespace simpleparser{
             if(currentToken.mType == POTENTIAL_OPERATOR){
                 switch(currCh){
                     case 'I':
+                        currentToken.mType = IGNORE_SENSITIVITY;
+                        currentToken.mText.append(1, currCh);
+                        endToken(currentToken, tokens);
+                        break;
                     case 'O':
-                        currentToken.mType = OPERATOR;
+                        currentToken.mType = OUTPUT;
                         currentToken.mText.append(1, currCh);
                         endToken(currentToken, tokens);
                         break;
@@ -24,16 +28,19 @@ namespace simpleparser{
                 }
                 continue;
             }
-            else if(currentToken.mType == IDENTIFIER || currentToken.mType == OPERATOR){
+            else if(currentToken.mType == CHARACTER || currentToken.mType == ANY_SYMBOL){
                 switch(currCh){
                     case '*':
+                        currentToken.mType = REPETITION_VALUE;
+                        endToken(currentToken, tokens);
+                        break;
                     case '{':
-                        currentToken.mType = OP;
+                        currentToken.mType = AMOUNT_VALUE;
                         endToken(currentToken, tokens);
                         break;
                 }
             }
-            if(currentToken.mType == OPERATOR){
+            if(currentToken.mType == LEFT_BRACKET){
                 switch(currCh){
                     case '0':
                     case '1':
@@ -46,7 +53,7 @@ namespace simpleparser{
                     case '8':
                     case '9':
                         endToken(currentToken, tokens);
-                        currentToken.mType = INTEGER_LITERAL;
+                        currentToken.mType = DIGIT;
                         currentToken.mText.append(1, currCh);
                         endToken(currentToken, tokens);
                         continue;
@@ -55,14 +62,38 @@ namespace simpleparser{
         
             switch(currCh) {
                 case '+':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = OR_SYMBOL;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case '*':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = REPETITION_SYMBOL;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case '(':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = LEFT_PARANTHESES;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case ')':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = RIGHT_PARANTHESES;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case '.':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = ANY_SYMBOL;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case '{':
+                    endToken(currentToken, tokens);
+                    currentToken.mType = LEFT_BRACKET;
+                    currentToken.mText.append(1, currCh);
+                    break;
                 case '}':
                     endToken(currentToken, tokens);
-                    currentToken.mType = OPERATOR;
+                    currentToken.mType = RIGHT_BRACKET;
                     currentToken.mText.append(1, currCh);
                     break;
                 case '\\':
@@ -72,7 +103,7 @@ namespace simpleparser{
                     break;
                 default:
                     endToken(currentToken, tokens);
-                    currentToken.mType = IDENTIFIER;
+                    currentToken.mType = CHARACTER;
                     currentToken.mText.append(1, currCh);
                     break;
 

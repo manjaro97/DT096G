@@ -12,7 +12,22 @@ namespace simpleparser{
         INTEGER_LITERAL,
         OPERATOR,
         POTENTIAL_OPERATOR,
-        OP
+        OP,
+
+        CHARACTER,
+        OR_SYMBOL,
+        REPETITION_SYMBOL,
+        REPETITION_VALUE,
+        ANY_SYMBOL,
+        LEFT_PARANTHESES,
+        RIGHT_PARANTHESES,
+        AMOUNT_VALUE,
+        LEFT_BRACKET,
+        DIGIT,
+        RIGHT_BRACKET,
+        IGNORE_SENSITIVITY,
+        OUTPUT
+
     };
 
     static const char* sTokenTypeStrings[] = {
@@ -21,7 +36,21 @@ namespace simpleparser{
         "INTEGER_LITERAL",
         "OPERATOR",
         "POTENTIAL_OPERATOR", 
-        "OP"
+        "OP",
+
+        "CHARACTER",
+        "OR_SYMBOL",
+        "REPETITION_SYMBOL",
+        "REPETITION_VALUE",
+        "ANY_SYMBOL",
+        "LEFT_PARANTHESES",
+        "RIGHT_PARANTHESES",
+        "AMOUNT_VALUE",
+        "LEFT_BRACKET",
+        "DIGIT",
+        "RIGHT_BRACKET",
+        "IGNORE_SENSITIVITY",
+        "OUTPUT"
     };
 
     class Token{

@@ -1,4 +1,5 @@
 //cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\Manjaro\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
 
 #include "Tokenizer.h"
 #include "Parser.h"
@@ -11,7 +12,8 @@ using namespace simpleparser;
 int main(){
     std::cout << "simpleparser 0.1\n" << std::endl;
 
-    FILE * fh = fopen("C:\\Users\\j_c_k\\Desktop\\DT096G\\TestParser3\\test.myc", "r");
+    //FILE * fh = fopen("C:\\Users\\j_c_k\\Desktop\\DT096G\\TestParser3\\test.myc", "r");
+    FILE * fh = fopen("C:\\Users\\Manjaro\\Desktop\\DT096G\\TestParser3\\test.myc", "r");
     if(!fh){    std::cerr << "Can't find file. " << std::endl;    }
     fseek(fh, 0, SEEK_END);
     size_t fileSize = ftell(fh);

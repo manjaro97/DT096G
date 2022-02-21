@@ -39,4 +39,18 @@ namespace simpleparser{
 <any>	::=	"."
 <character>	::=	 any non metacharacter 
 
+<EXPR> ::= <or>  |  <simple-EXPR>
+<or>	::=	<simple-EXPR> "+" <EXPR>
+<simple-EXPR>	::=  concatenation> | <basic-RE> 
+<concatenation> ::= <basic-RE> <simple-EXPR> 
+<basic-RE>	::= <group> | <repetition> | <counter> | <lowercase> | <output> | <element>
+<output> ::= <element> "\O" "{" <digit> "}" | <element> "\O"
+<lowercase> ::= <EXPR> "\I"
+<repetition>	::=	<element> "*"
+<counter> ::= <element>  "{" <digit> "}"
+<element>	::=	 <char> | <any> 
+<group>	::=	"(" <EXPR> ")"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<any>	::=	"."
+<char>	::= any non metacharacter 
 */
