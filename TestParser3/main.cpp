@@ -1,6 +1,7 @@
-//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
 
 #include "Tokenizer.h"
+#include "Parser.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,6 +27,9 @@ int main(){
     for(Token currToken : tokens){
         currToken.debugPrint();
     }
+
+    Parser parser;
+    parser.parse(tokens);
 
     return 0;
 }

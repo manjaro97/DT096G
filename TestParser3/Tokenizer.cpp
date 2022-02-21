@@ -24,26 +24,36 @@ namespace simpleparser{
                 }
                 continue;
             }
-        
-            switch(currCh) {
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    if (currentToken.mType == WHITESPACE){
+            else if(currentToken.mType == IDENTIFIER || currentToken.mType == OPERATOR){
+                switch(currCh){
+                    case '*':
+                    case '{':
+                        currentToken.mType = OP;
+                        endToken(currentToken, tokens);
+                        break;
+                }
+            }
+            if(currentToken.mType == OPERATOR){
+                switch(currCh){
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        endToken(currentToken, tokens);
                         currentToken.mType = INTEGER_LITERAL;
                         currentToken.mText.append(1, currCh);
-                    }
-                    else{
-                        currentToken.mText.append(1, currCh);
-                    }
-                    break;
+                        endToken(currentToken, tokens);
+                        continue;
+                }
+            }
+        
+            switch(currCh) {
                 case '+':
                 case '*':
                 case '(':
@@ -54,7 +64,6 @@ namespace simpleparser{
                     endToken(currentToken, tokens);
                     currentToken.mType = OPERATOR;
                     currentToken.mText.append(1, currCh);
-                    endToken(currentToken, tokens);
                     break;
                 case '\\':
                     endToken(currentToken, tokens);
@@ -62,14 +71,9 @@ namespace simpleparser{
                     currentToken.mText.append(1, currCh);
                     break;
                 default:
-                    if(currentToken.mType == WHITESPACE || currentToken.mType == INTEGER_LITERAL){
-                        endToken(currentToken, tokens);
-                        currentToken.mType = IDENTIFIER;
-                        currentToken.mText.append(1, currCh);
-                    }
-                    else{
-                        currentToken.mText.append(1, currCh);
-                    }
+                    endToken(currentToken, tokens);
+                    currentToken.mType = IDENTIFIER;
+                    currentToken.mText.append(1, currCh);
                     break;
 
             }

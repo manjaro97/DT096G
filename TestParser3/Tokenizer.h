@@ -11,7 +11,8 @@ namespace simpleparser{
         IDENTIFIER, 
         INTEGER_LITERAL,
         OPERATOR,
-        POTENTIAL_OPERATOR
+        POTENTIAL_OPERATOR,
+        OP
     };
 
     static const char* sTokenTypeStrings[] = {
@@ -19,7 +20,8 @@ namespace simpleparser{
         "IDENTIFIER", 
         "INTEGER_LITERAL",
         "OPERATOR",
-        "POTENTIAL_OPERATOR"
+        "POTENTIAL_OPERATOR", 
+        "OP"
     };
 
     class Token{
