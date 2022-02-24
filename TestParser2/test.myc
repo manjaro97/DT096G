@@ -1,3 +1,0 @@
-void main(void){
-    printf("Hello it has been %d years since I learned C.\n", 2022-2016);
-}

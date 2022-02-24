@@ -1,57 +1,28 @@
+//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\Manjaro\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
+
+#include "Tokenizer.h"
+#include "Parser.h"
 #include <iostream>
 #include <string>
-#include <fstream>
 #include <vector>
-#include "parser.h"
 
-// cd "c:\Users\Manjaro\Desktop\DT096G\Labb1\" ; if ($?) { g++ main.cpp parser.cpp -o main } ; if ($?) { .\main }
+using namespace simpleparser;
 
-int main() {
 
-	std::vector<char> text, input;
+int main(){
+    std::cout << "simpleparser 0.1\n" << std::endl;
 
-	std::cout << std::endl << "Reading from Input file..." << std::endl;
-	std::string line;
-  	std::ifstream myfile ("input.txt");
-  	if (myfile.is_open())
-  	{
-  	  while ( std::getline (myfile,line) )
-  	  {
-		for(auto c: line){
-			text.push_back(c);
-		}
-  	  }
-  	  myfile.close();
-  	}
-  	else std::cout << "Unable to open file"; 
+    std::string regularExpression = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
+    
+    std::cout << regularExpression << std::endl;
 
-	std::cout << std::endl << "Parsing text: ";
-	for(auto c : text){
-		std::cout << c;
-	}
-	
-	std::cout << std::endl << std::endl << "---Regex Parser Started---" << std::endl << std::endl;
-	
-	std::string inputStr, runProgram;
+    Tokenizer tokenizer;
+    std::vector<Token> tokens = tokenizer.parse(regularExpression);
 
-	while(true){
-		std::cout << std::endl << "Write 1 to continue or 0 to exit: ";
-		std::cin >> runProgram;
+    for(Token currToken : tokens){
+        currToken.debugPrint();
+    }
 
-		if(runProgram != "1"){
-			return 0;
-		}
-
-		std::cout << std::endl << "Write parse Expression: ";
-		std::cin >> inputStr;
-		input.clear();
-		for(auto c: inputStr){
-			input.push_back(c);
-		}
-
-		std::cout << parser();
-
-	}
-
-	return 0;
+    return 0;
 }
