@@ -1,6 +1,9 @@
 #ifndef CLASSES_H
 #define CLASSES_H
 
+#include <string>
+#include <vector>
+
 struct iter {
 	std::string::iterator lhs;
 	std::string::iterator rhs;
@@ -49,9 +52,14 @@ struct group : op {
 
 struct repetition : op {
 
+std::string _id; //Identifier
+
 };
 
 struct counter : op {
+
+std::string _id; //Identifier
+int _nr;  //amount
 
 };
 
@@ -69,6 +77,8 @@ struct element : op {
 
 struct digit : op {
 
+int _nr;  //digit
+
 };
 
 struct any : op {
@@ -76,6 +86,8 @@ struct any : op {
 };
 
 struct character : op {
+
+std::string _id; //Identifier
 
 };
 

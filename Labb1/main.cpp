@@ -1,8 +1,9 @@
-//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
-//cd "c:\Users\Manjaro\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp Parser.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp parsetree.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\Manjaro\Desktop\DT096G\Labb1\" ; if ($?) { g++ main.cpp Tokenizer.cpp parsetree.cpp -o main } ; if ($?) { .\main }
 
 #include "Tokenizer.h"
-#include "Parser.h"
+#include "classes.h"
+#include "parsetree.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,16 +14,27 @@ using namespace simpleparser;
 int main(){
     std::cout << "simpleparser 0.1\n" << std::endl;
 
-    std::string regularExpression = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
-    
-    std::cout << regularExpression << std::endl;
+    std::string text = "Waterloo I was defeated, you won the war Waterloo promise to love you for ever more Waterloo couldn't escape if I wanted to Waterloo knowing my fate is to be with you Waterloo finally facing my Waterloo";
+    //std::string input = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
+    std::string input = ".abcd..ab";
+
+    std::cout << input << std::endl;
 
     Tokenizer tokenizer;
-    std::vector<Token> tokens = tokenizer.parse(regularExpression);
+    std::vector<Token> tokens = tokenizer.parse(input);
 
     for(Token currToken : tokens){
         currToken.debugPrint();
     }
+
+    //Get iterators to begin and end of text
+    std::vector<Token>::iterator begin = tokens.begin();
+    std::vector<Token>::iterator end = tokens.end();
+
+    std::cout << "\nCreating Parse Tree Class\n" << std::endl;
+    ParseTreeClass Tree(tokens);
+    std::cout << "\nRunning Parse Tree\n" << std::endl;
+    op* test = Tree.program_parse(begin, end);
 
     return 0;
 }
