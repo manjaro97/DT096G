@@ -1,4 +1,4 @@
-//cd "c:\Users\j_c_k\Desktop\DT096G\TestParser3\" ; if ($?) { g++ main.cpp Tokenizer.cpp parsetree.cpp -o main } ; if ($?) { .\main }
+//cd "c:\Users\j_c_k\Desktop\DT096G\Labb1\" ; if ($?) { g++ main.cpp Tokenizer.cpp parsetree.cpp -o main } ; if ($?) { .\main }
 //cd "c:\Users\Manjaro\Desktop\DT096G\Labb1\" ; if ($?) { g++ main.cpp Tokenizer.cpp parsetree.cpp -o main } ; if ($?) { .\main }
 
 #include "Tokenizer.h"
@@ -16,7 +16,7 @@ int main(){
 
     std::string text = "Waterloo I was defeated, you won the war Waterloo promise to love you for ever more Waterloo couldn't escape if I wanted to Waterloo knowing my fate is to be with you Waterloo finally facing my Waterloo";
     //std::string input = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
-    std::string input = ".abcd..ab";
+    std::string input = "ab(cd)ef*.g.*h{3}";
 
     std::cout << input << std::endl;
 
@@ -35,6 +35,8 @@ int main(){
     ParseTreeClass Tree(tokens);
     std::cout << "\nRunning Parse Tree\n" << std::endl;
     op* test = Tree.program_parse(begin, end);
+    
+    Tree.print(test);
 
     return 0;
 }
