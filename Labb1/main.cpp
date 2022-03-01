@@ -16,7 +16,7 @@ int main(){
 
     std::string text = "Waterloo I was defeated, you won the war Waterloo promise to love you for ever more Waterloo couldn't escape if I wanted to Waterloo knowing my fate is to be with you Waterloo finally facing my Waterloo";
     //std::string input = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
-    std::string input = "ab(cd)ef*.g.*h{3}";
+    std::string input = ".*";
 
     std::cout << input << std::endl;
 
@@ -37,6 +37,11 @@ int main(){
     op* test = Tree.program_parse(begin, end);
     
     Tree.print(test);
+
+    //Print result of regex tree on text
+	std::cout << "Result of executed regex:" << std::endl;
+	Tree.execute(test, text);
+	std::cout << std::endl;
 
     return 0;
 }

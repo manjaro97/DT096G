@@ -270,3 +270,29 @@ void ParseTreeClass::print(op* op, size_t i) {
 		print(op->operands[childNode], i);
 	}
 }
+
+//Executes parse tree
+void ParseTreeClass::execute(op* parse_tree, std::string source) {
+	//Create new object of source string
+	object* obj = new object;
+	obj->lhs = source.begin();
+	obj->rhs = source.begin();
+	obj->end = source.end();
+
+	//Evaluate parse tree on source string
+	object* parse = parse_tree->eval(obj);
+
+	//If we got a valid parse, print it
+	if (parse != nullptr) {
+		while (parse->lhs != parse->rhs) {
+			std::cout << *parse->lhs;
+			parse->lhs++;
+		}
+		std::cout << std::endl;
+		std::cout << std::endl << "EXIT_SUCCESS" << std::endl;
+	}
+	else {
+		std::cout << std::endl;
+		std::cerr << std::endl << "EXIT_FAILURE" << std::endl;
+	}
+}
