@@ -51,7 +51,19 @@ struct re : op {
 
 struct or_re : op {
 	object* eval(object* obj) override{
-		return operands[0]->eval(obj);
+		object* objCopy = obj;
+		object* child_One = operands[0]->eval(obj);
+		obj = objCopy;
+		object* child_Two = operands[1]->eval(obj);
+		if(child_One){
+			return child_One;
+		}
+		else if(child_Two){
+			return child_Two;
+		}
+		else{
+			return nullptr;
+		}
 	}
 
 	std::string id() override {
@@ -235,7 +247,7 @@ struct any : op {
 	}
 
 	std::string id() override {
-		return "<Any>";
+		return "<Any> (.)";
 	}
 };
 

@@ -25,11 +25,62 @@ op* ParseTreeClass::regExp(std::vector<simpleparser::Token>::iterator& first, st
     //Create empty child node
 	op* regExp_child = nullptr;
 
-	regExp_child = simple_expr(first, last);
+	//Check for Output
+
+	//Check for Or-Expr
+	if(!regExp_child){
+		regExp_child = or_expr(first, last);
+	}
+
+	//Check for Simple-expr
+	if(!regExp_child){
+		regExp_child = simple_expr(first, last);
+	}
 
 	re* expr = new re;
 	expr->operands.push_back(regExp_child);
 	return expr;
+}
+
+op* ParseTreeClass::or_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last) {
+
+	std::vector<simpleparser::Token>::iterator start = first;
+
+	int insideGroup = 0;
+	//Get token
+	simpleparser::Token thisToken;
+
+	while(first != last && first+1 != last){
+		thisToken = *first;
+
+		if(simpleparser::sTokenTypeStrings[thisToken.mType] == "LEFT_PARANTHESES"){
+			insideGroup++;
+		}
+		else if(simpleparser::sTokenTypeStrings[thisToken.mType] == "RIGHT_PARANTHESES"){
+			insideGroup++;
+		}
+		else if(simpleparser::sTokenTypeStrings[thisToken.mType] == "OR_SYMBOL" && insideGroup == 0){
+			
+			//Create empty child node
+			op* or_expr_child_one = nullptr;
+
+			or_expr_child_one = regExp(start, first);
+
+			//Create empty child node
+			op* or_expr_child_two = nullptr;
+
+			first++;
+			or_expr_child_two = regExp(first, last);
+
+			or_re* expr = new or_re;
+			expr->operands.push_back(or_expr_child_one);
+			expr->operands.push_back(or_expr_child_two);
+			return expr;
+		}
+		first++;
+	}
+	first = start;
+	return nullptr;
 }
 
 op* ParseTreeClass::simple_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last) {
@@ -194,7 +245,6 @@ op* ParseTreeClass::repetition_expr(std::vector<simpleparser::Token>::iterator& 
 
 	//If token is not <repetition>
 	return nullptr;
-	
 }
 
 op* ParseTreeClass::counter_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last) {

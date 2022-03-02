@@ -13,6 +13,7 @@ class ParseTreeClass{
         ParseTreeClass(std::vector<simpleparser::Token> t);
         op* program_parse(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
         op* regExp(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
+        op* or_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
         op* concatenation_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
         op* simple_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
         op* basic_expr(std::vector<simpleparser::Token>::iterator& first, std::vector<simpleparser::Token>::iterator& last);
