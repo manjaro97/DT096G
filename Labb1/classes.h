@@ -5,18 +5,10 @@
 #include <vector>
 #include <iostream>
 
-
-struct iter {
-	std::string::iterator lhs;
-	std::string::iterator rhs;
-};
-
 struct object {
 	std::string::iterator lhs;
 	std::string::iterator rhs;
 	std::string::iterator end;
-	size_t captured = 0;
-	std::vector<iter> cap;
 };
 
 struct op {
