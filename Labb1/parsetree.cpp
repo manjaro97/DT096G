@@ -89,7 +89,7 @@ op* ParseTreeClass::basic_expr(std::vector<simpleparser::Token>::iterator& first
     //Create empty child node
 	op* basic_expr_child = nullptr;
 
-	//Check if <basic-RE>
+	//Check if <basic-expr>
 	if (!basic_expr_child) {
 	    basic_expr_child = group_expr(first, last);
 	}
@@ -288,11 +288,9 @@ void ParseTreeClass::execute(op* parse_tree, std::string source) {
 			std::cout << *parse->lhs;
 			parse->lhs++;
 		}
-		std::cout << std::endl;
-		std::cout << std::endl << "EXIT_SUCCESS" << std::endl;
+		std::cout << "\n\nEXIT_SUCCESS\n";
 	}
 	else {
-		std::cout << std::endl;
-		std::cerr << std::endl << "EXIT_FAILURE" << std::endl;
+		std::cerr << "\n\nEXIT_FAILURE\n";
 	}
 }

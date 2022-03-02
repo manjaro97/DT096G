@@ -16,7 +16,9 @@ int main(){
 
     std::string text = "Waterloo I was defeated, you won the war Waterloo promise to love you for ever more Waterloo couldn't escape if I wanted to Waterloo knowing my fate is to be with you Waterloo finally facing my Waterloo";
     //std::string input = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
-    std::string input = "rlo* could.{6}";
+    //std::string input = "lo* could.{3}";
+    //std::string input = ".*";
+    std::string input = "Hello World";
 
     std::cout << input << std::endl;
 
@@ -34,13 +36,13 @@ int main(){
     std::cout << "\nCreating Parse Tree Class\n" << std::endl;
     ParseTreeClass Tree(tokens);
     std::cout << "\nRunning Parse Tree\n" << std::endl;
-    op* test = Tree.program_parse(begin, end);
+    op* parse_tree = Tree.program_parse(begin, end);
     
-    Tree.print(test);
+    Tree.print(parse_tree);
 
     //Print result of regex tree on text
 	std::cout << "Result of executed regex:" << std::endl;
-	Tree.execute(test, text);
+	Tree.execute(parse_tree, text);
 	std::cout << std::endl;
 
     return 0;

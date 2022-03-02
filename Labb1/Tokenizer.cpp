@@ -9,15 +9,17 @@ namespace simpleparser{
         Token currentToken;
 
         for(char currCh: inProgram){
-
+            // Checking for Potential Operator following "\"
             if(currentToken.mType == POTENTIAL_OPERATOR){
                 switch(currCh){
                     case 'I':
+                        //Found Operator \I
                         currentToken.mType = IGNORE_SENSITIVITY;
                         currentToken.mText.append(1, currCh);
                         endToken(currentToken, tokens);
                         break;
                     case 'O':
+                        //Found Operator \O
                         currentToken.mType = OUTPUT;
                         currentToken.mText.append(1, currCh);
                         endToken(currentToken, tokens);
@@ -28,18 +30,22 @@ namespace simpleparser{
                 }
                 continue;
             }
+            //Checking for potential operator following a character
             else if(currentToken.mType == CHARACTER || currentToken.mType == ANY_SYMBOL){
                 switch(currCh){
                     case '*':
+                        //Found Operator OP*
                         currentToken.mType = REPETITION_VALUE;
                         endToken(currentToken, tokens);
                         break;
                     case '{':
+                        //Found Operator OP{nr}
                         currentToken.mType = AMOUNT_VALUE;
                         endToken(currentToken, tokens);
                         break;
                 }
             }
+            //Checking for digits following a left bracket
             if(currentToken.mType == LEFT_BRACKET){
                 switch(currCh){
                     case '0':
@@ -59,7 +65,7 @@ namespace simpleparser{
                         continue;
                 }
             }
-        
+            //Checking for different Operations
             switch(currCh) {
                 case '+':
                     endToken(currentToken, tokens);
@@ -115,14 +121,16 @@ namespace simpleparser{
         return tokens;
     }
 
+    //Function to pushback tokens into a vector and reset the variables
     void Tokenizer::endToken(Token &token, std::vector<Token> &tokens){
-        if(token.mType != WHITESPACE){
+        if(token.mType != NONTOKEN){
             tokens.push_back(token);
         }
-        token.mType = WHITESPACE;
+        token.mType = NONTOKEN;
         token.mText.erase();
     }
 
+    //Debugfunction to print out the Tokens
     void Token::debugPrint() const{
         std::cout << "Token(" << sTokenTypeStrings[mType] << ", \"" << mText << "\")" << std::endl;
     }

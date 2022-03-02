@@ -25,6 +25,7 @@ class ParseTreeClass{
         //Prints parse tree
         void print(op* op, size_t i = 0);
 
+        //Executes parsing of text with parsetree
         void execute(op* parse_tree, std::string source);
 };
 

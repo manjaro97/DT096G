@@ -7,7 +7,7 @@
 namespace simpleparser{
 
     enum TokenType {
-        WHITESPACE, 
+        NONTOKEN, 
         POTENTIAL_OPERATOR,
         CHARACTER,
         OR_SYMBOL,
@@ -22,11 +22,10 @@ namespace simpleparser{
         RIGHT_BRACKET,
         IGNORE_SENSITIVITY,
         OUTPUT
-
     };
 
     static const char* sTokenTypeStrings[] = {
-        "WHITESPACE", 
+        "NONTOKEN", 
         "POTENTIAL_OPERATOR", 
         "CHARACTER",
         "OR_SYMBOL",
@@ -45,7 +44,7 @@ namespace simpleparser{
 
     class Token{
     public: 
-        enum TokenType mType{WHITESPACE};
+        enum TokenType mType{NONTOKEN};
         std::string mText;
 
         void debugPrint() const;
