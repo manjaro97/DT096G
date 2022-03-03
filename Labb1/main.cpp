@@ -16,8 +16,8 @@ int main(){
 
     std::string text = "Waterloo I was defeated, you won the war Waterloo promise to love you for ever more Waterloo couldn't escape if I wanted to Waterloo knowing my fate is to be with you Waterloo finally facing my Waterloo";
     //std::string input = "ab(c+d)ef*.g.*h{3}\\I\\O{1}";
-    //std::string input = "test+lo* could.{3}";
-    std::string input = ".g+Wat";
+    //std::string input = "lo* could.{3}";
+    std::string input = "wa";
     //std::string input = "Hello World";
 
     std::cout << input << std::endl;
