@@ -1,5 +1,7 @@
 #include <iostream>
 
+//cd "c:\Users\j_c_k\Desktop\DT096G\Labb3\" ; if ($?) { g++ main.cpp -o main } ; if ($?) { .\main }
+
 template <int exp, class Enable = void>
 struct POW
 {
@@ -14,13 +16,12 @@ struct POW<exp, typename std::enable_if_t<exp < 0> >
 {
     double operator()(double bas){
         POW<-exp> nextExp;
-        //return 1/nextExp(bas);
-        return 3;
+        return 1/nextExp(bas);
     }
 };
 
 template <>
-struct POW<0, bool>
+struct POW<0>
 {
     double operator()(double bas){
         return 1;
@@ -29,10 +30,10 @@ struct POW<0, bool>
 
 int main(){
 
-    double bas = 20;
+    double bas = 2;
 
-    POW<2> c;
-    std::cout << "20^5 = " << c(bas) << std::endl;
+    POW<-5> c;
+    std::cout << "Result = " << c(bas) << std::endl;
 
     return 0;
 }
